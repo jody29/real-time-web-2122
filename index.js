@@ -20,9 +20,33 @@ app
 .use(bodyParser.urlencoded({ extended: true }))
 .use('/', homeRouter)
 
+let users = []
+
 // socket connection
-io.on('connection', socket => {
-    console.log('user connected')
+io.on('connection', async (socket) => {
+    socket.on('user connected', username => {
+        users.push({
+            username: username,
+            score: 0,
+            id: socket.id
+        })
+
+        io.emit('new user', (users))
+    })
+
+    socket.on('user disconnected', username => {
+        let name = ''
+
+        users.forEach(user => {
+            if (user.id === socket.id) {
+                name = username
+
+                users = users.filter(user => user.id != socket.id)
+            }
+        })
+
+        io.emit('new user', (users))
+    })
 })
 
 server.listen(PORT, () => {
