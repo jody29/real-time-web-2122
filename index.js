@@ -21,9 +21,13 @@ app
 .use('/', homeRouter)
 
 let users = []
+let roomCount = 0
+let roomName = 'room' + roomCount.toString()
 
 // socket connection
-io.on('connection', async (socket) => {
+io.on('connection', (socket) => {
+    socket.join(roomName)
+
     socket.on('user connected', username => {
         users.push({
             username: username,
@@ -31,10 +35,12 @@ io.on('connection', async (socket) => {
             id: socket.id
         })
 
-        io.emit('new user', (users))
+        io.in(roomName).emit('new user', (users))
+
+        console.log(users)
     })
 
-    socket.on('user disconnected', username => {
+    socket.on('disconnect', username => {
         let name = ''
 
         users.forEach(user => {

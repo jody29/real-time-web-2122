@@ -1,7 +1,9 @@
 const socket = io()
-const username = document.querySelector('#username').value
 const leaveRoom = document.querySelector('#leave')
 const userList = document.querySelector('#userList')
+
+const urlParams = new URLSearchParams(window.location.search)
+const username = urlParams.get('username')
 
 socket.emit('user connected', username)
 
@@ -19,5 +21,5 @@ socket.on('new user', (users) => {
 })
 
 leaveRoom.addEventListener('click', () => {
-    socket.emit('user disconnected', username)
+    socket.emit('disconnect', username)
 })
