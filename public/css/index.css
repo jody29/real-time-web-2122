@@ -1,0 +1,53 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
+header,
+main,
+footer {
+    width: calc(100% - 2rem);
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#home {
+    background-image: url(/assets/Movies-background.png);
+}
+
+#home main {
+    height: 100vh;
+    background-color: rgba(0,0,0,.8);
+    backdrop-filter: blur(2px);
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+#home h1 {
+    color: white;
+    margin-bottom: 2rem;
+}
+
+#home form input, button {
+    padding: .5em;
+    border: 1px solid transparent;
+}
+
+#home form button {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}

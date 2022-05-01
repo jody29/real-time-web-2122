@@ -7,14 +7,14 @@ const username = urlParams.get('username')
 
 socket.emit('user connected', username)
 
-socket.on('new user', (users) => {
+socket.on('new user', users => {
     userList.innerHTML = ''
 
     users.forEach(user => {
 
         let userItem = document.createElement('li')
 
-        userItem.textContent = user.username
+        userItem.textContent = `${user.username}: ${user.score}`
 
         userList.appendChild(userItem)
     })
