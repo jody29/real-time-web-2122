@@ -7,7 +7,6 @@ router
 })
 .get('/game', (req, res) => {
     res.render('pages/room')
-
 })
 
 module.exports = router

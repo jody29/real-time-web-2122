@@ -4,11 +4,14 @@ const http = require('http')
 const PORT = process.env.PORT || 5500
 const bodyParser = require('body-parser')
 const path = require('path')
+const fetch = require('node-fetch')
 
 const app = express()
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
+
+const randomSortedMovieData = require('./src/modules/randomMovie.js')
 
 const homeRouter = require('./src/routers/homeRouter.js')
 
@@ -19,6 +22,10 @@ app
 .use(express.static(__dirname + '/public'))
 .use(bodyParser.urlencoded({ extended: true }))
 .use('/', homeRouter)
+
+randomSortedMovieData()
+.then(data => console.log(data))
+.catch((err) => console.log(err))
 
 let users = []
 
@@ -32,9 +39,16 @@ io.on('connection', (socket) => {
             id: socket.id
         })
 
-        console.log(users.length)
+        io.emit('new user', (users))
+    })
 
-        io.emit('new user', users)
+    socket.on('new movie', () => {
+        randomSortedMovieData()
+        .then(data => {
+            console.log(data)
+            io.emit('random movie', data)
+        })
+        .catch(err => err)
     })
 
     socket.on('disconnect', username => {
