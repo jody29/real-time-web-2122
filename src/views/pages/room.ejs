@@ -8,6 +8,7 @@
     <main id="room">
         <article>
             <section>
+                <a href="/" id="leave">Leave game</a>
                 <button class="newMovie">New Movie</button>
                 <div id="moviePoster"></div>
             </section>
@@ -19,7 +20,11 @@
             </section>
             <section>
                 <h2>Chat</h2>
-                <a href="/" id="leave">Leave room</a>
+                <ul id="chatBox"></ul>
+                <form action="" id="chatForm">
+                    <input type="text" name="message" id="message" autocomplete="off">
+                    <button id="sendMessage">Send</button>
+                </form>
             </section>
         </article> 
     </main>

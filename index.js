@@ -23,6 +23,7 @@ app
 
 let users = []
 const randomSortedMovieData = require('./src/modules/randomMovie.js') // function to get a random movie
+let movie = {}
 
 // socket connection
 io.on('connection', (socket) => {
@@ -37,14 +38,47 @@ io.on('connection', (socket) => {
         io.emit('new user', (users))
     })
 
+    socket.on('new message', data => {
+
+        console.log(data.message)
+        if (movie) {
+            if (data.message === movie.title.toLowerCase()) {
+                console.log('good answer')
+                let rightUser = users.find(object => object.username === data.username)
+
+                rightUser.score = rightUser.score + 10
+
+                console.log(rightUser)
+
+                io.emit('new user', (users))
+
+                randomSortedMovieData()
+                .then(async res => {
+                    console.log(res)
+                    movie = await res
+                    io.emit('good guess', {
+                        movie: res,
+                        username: data.username
+                    })
+                })
+            } else {
+                io.emit('message', {
+                    username: data.username,
+                    message: data.message
+                })
+            }
+        }
+    })
+
     socket.on('new movie', () => {
         randomSortedMovieData()
-        .then(data => {
+        .then(async data =>  {
+            movie = await data
             console.log(data)
             io.emit('random movie', data)
         })
         .catch(err => err)
-    })
+    })   
 
     socket.on('disconnect', username => {
         let name = ''

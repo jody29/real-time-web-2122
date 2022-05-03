@@ -8,7 +8,7 @@
 body {
     min-height: 100vh;
     position: relative;
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(218, 218, 218);
 }
 
 header,
@@ -67,6 +67,11 @@ h2 {
     color: white;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 main article:first-of-type {
     height: 100%;
     width: 60%;
@@ -88,6 +93,7 @@ main article:first-of-type section {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 }
 
 #room article:nth-of-type(2) {
@@ -98,7 +104,7 @@ main article:first-of-type section {
 #room article:nth-of-type(2) section {
     height: calc(40% - 1.5rem);
     margin: 1em;
-    padding: 1em;
+    padding: 1.5em;
     box-shadow: 0px 0px 5px black;
     background-color: rgb(31, 31, 31);
     border-radius: 1em;
@@ -116,7 +122,7 @@ main article:first-of-type section {
     max-height: 100%;
 }
 
-#room article:nth-of-type(2) ul:first-of-type li {
+#room article:nth-of-type(2) section:first-of-type ul li {
     background-color: white;
     height: calc(100% / 3 - 1.7rem);
     margin-bottom: 1em;
@@ -127,18 +133,98 @@ main article:first-of-type section {
     border-radius: .5em;
 }
 
-#room article:nth-of-type(2) ul:first-of-type li:first-of-type {
+#room article:nth-of-type(2) section:first-of-type ul li:first-of-type {
     background-color: rgba(255, 215, 0, .5);
 }
 
-#room article:nth-of-type(2) ul:first-of-type li:nth-of-type(2) {
+#room article:nth-of-type(2) section:first-of-type ul li:nth-of-type(2) {
     background-color: rgba(192, 192, 192, .5);
 }
 
-#room article:nth-of-type(2) ul:first-of-type li:nth-of-type(3) {
+#room article:nth-of-type(2) section:first-of-type ul li:nth-of-type(3) {
     background-color: rgba(222, 184, 135, .5);
 }
 
 img {
-    box-shadow: 0px 0px 10px white;
+    border: 1px solid white;
+    border-radius: 1em;
+}
+
+#chatBox {
+    margin-top: 1em;
+    height: calc(100% - 6rem);
+    background-color: rgb(255, 255, 255);
+    margin-bottom: .5em;
+    border-radius: .5em;
+    padding: 1em;
+    padding-bottom: 0;
+    overflow-y: scroll;
+}
+
+#chatForm {
+    display: flex;
+}
+
+#chatForm button {
+    background-color: rgb(105, 20, 20);
+    padding: 1em;
+    color: white;
+    border: 1px solid transparent;
+    font-weight: bold;
+    margin-left: .5em;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+#chatForm input {
+    width: 100%;
+    border-radius: .5em;
+    padding: 1em;
+}
+
+#leave {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+}
+
+.currentUser {
+    font-weight: bold;
+}
+
+.notification {
+    display: flex;
+    width: 100%!important;
+    background-color: gray;
+    justify-content: center;
+    color: white;
+    padding: .5em;
+    border-radius: .5em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#chatBox li {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+
+#chatBox li span:first-of-type {
+    font-weight: bold;
+    margin-bottom: .5em;
+}
+
+.outgoing {
+    background-color: rgb(225, 225, 225);
+    border-radius: .5em .5em .5em 0;
+}
+
+.incoming {
+    margin-left: auto;
+    background-color: #387EF7;
+    border-radius: .5em .5em 0 .5em;
+    color: white;
 }
