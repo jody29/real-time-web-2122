@@ -5,14 +5,23 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
-        <ul id="userList"></ul>
-
-        <button class="newMovie">New Movie</button>
-
-        <div id="moviePoster"></div>
-    
-        <a href="/" id="leave">Leave room</a> 
+    <main id="room">
+        <article>
+            <section>
+                <button class="newMovie">New Movie</button>
+                <div id="moviePoster"></div>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h2>Leaderboard</h2>
+                <ul id="userList"></ul>
+            </section>
+            <section>
+                <h2>Chat</h2>
+                <a href="/" id="leave">Leave room</a>
+            </section>
+        </article> 
     </main>
 </body>
 <script src="/socket.io/socket.io.js"></script>

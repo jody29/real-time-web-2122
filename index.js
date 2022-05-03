@@ -11,8 +11,6 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 
-const randomSortedMovieData = require('./src/modules/randomMovie.js')
-
 const homeRouter = require('./src/routers/homeRouter.js')
 
 // express setup
@@ -23,11 +21,8 @@ app
 .use(bodyParser.urlencoded({ extended: true }))
 .use('/', homeRouter)
 
-randomSortedMovieData()
-.then(data => console.log(data))
-.catch((err) => console.log(err))
-
 let users = []
+const randomSortedMovieData = require('./src/modules/randomMovie.js') // function to get a random movie
 
 // socket connection
 io.on('connection', (socket) => {

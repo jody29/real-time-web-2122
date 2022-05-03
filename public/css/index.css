@@ -8,6 +8,7 @@
 body {
     min-height: 100vh;
     position: relative;
+    background-color: rgb(210, 210, 210);
 }
 
 header,
@@ -17,6 +18,10 @@ footer {
     max-width: 75rem;
     margin: 0 auto;
     padding: 1rem;
+}
+
+ul {
+    list-style: none;
 }
 
 #home {
@@ -50,4 +55,90 @@ footer {
     color: white;
     font-weight: bold;
     cursor: pointer;
+}
+
+#room {
+    height: 100vh;
+    padding: 0;
+    display: flex;
+}
+
+h2 {
+    color: white;
+}
+
+main article:first-of-type {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main article:first-of-type section {
+    margin: 1em;
+    padding: 1em;
+    box-shadow: 0px 0px 5px black;
+    background-color: rgb(31, 31, 31);
+    border-radius: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#room article:nth-of-type(2) {
+    height: 100%;
+    width: 40%;
+}
+
+#room article:nth-of-type(2) section {
+    height: calc(40% - 1.5rem);
+    margin: 1em;
+    padding: 1em;
+    box-shadow: 0px 0px 5px black;
+    background-color: rgb(31, 31, 31);
+    border-radius: 1em;
+}
+
+#room article:nth-of-type(2) section:last-of-type {
+    height: calc(60% - 1.5rem);
+}
+
+#room article:nth-of-type(2) section:first-of-type ul:first-of-type {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    height: 100%;
+    max-height: 100%;
+}
+
+#room article:nth-of-type(2) ul:first-of-type li {
+    background-color: white;
+    height: calc(100% / 3 - 1.7rem);
+    margin-bottom: 1em;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+    border-radius: .5em;
+}
+
+#room article:nth-of-type(2) ul:first-of-type li:first-of-type {
+    background-color: rgba(255, 215, 0, .5);
+}
+
+#room article:nth-of-type(2) ul:first-of-type li:nth-of-type(2) {
+    background-color: rgba(192, 192, 192, .5);
+}
+
+#room article:nth-of-type(2) ul:first-of-type li:nth-of-type(3) {
+    background-color: rgba(222, 184, 135, .5);
+}
+
+img {
+    box-shadow: 0px 0px 10px white;
 }
