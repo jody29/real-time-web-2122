@@ -6,6 +6,7 @@ const movieCont = document.querySelector('#moviePoster')
 const chatForm = document.querySelector('#chatForm')
 const message = document.querySelector('#message')
 const chatBox = document.querySelector('#chatBox')
+const joinedUsers = document.querySelector('#joined')
 
 const urlParams = new URLSearchParams(window.location.search)
 const username = urlParams.get('username')
@@ -21,6 +22,18 @@ socket.emit('user connected', username)
 
 socket.on('new user', users => {
     userList.innerHTML = ''
+
+    users.forEach(user => {
+        let userItem = document.createElement('li')
+
+        userItem.textContent = user.username
+
+        if (user.username === username) {
+            userItem.classList.add('joinedUser')
+        }
+
+        joinedUsers.appendChild(userItem)
+    })
 
     users.splice(3)
 
