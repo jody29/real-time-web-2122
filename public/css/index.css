@@ -187,6 +187,7 @@ img {
     position: absolute;
     left: 1em;
     top: 1em;
+    z-index: 20;
 }
 
 .currentUser {
@@ -277,4 +278,16 @@ img {
 
 .hidden {
     display: none;
+}
+
+#timer {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    background-color: rgb(105, 20, 20);
+    padding: .5em;
+    border-radius: 50%;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
 }

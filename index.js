@@ -48,6 +48,15 @@ io.on('connection', (socket) => {
         }
     })
 
+    socket.on('new movie', () => {
+        randomSortedMovieData()
+        .then(async data => {
+            console.log(data)
+            movie = await data
+            io.emit('random movie', data)
+        })
+    })
+
     socket.on('new message', data => {
         if (movie) {
             if (data.message === movie.title.toLowerCase()) {

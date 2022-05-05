@@ -9,6 +9,7 @@ const chatBox = document.querySelector('#chatBox')
 const joinedUsers = document.querySelector('#joined')
 const userNeed = document.querySelector('#userNeed')
 const queue = document.querySelector('#queue')
+const timerCont = document.querySelector('#timer')
 
 const urlParams = new URLSearchParams(window.location.search)
 const username = urlParams.get('username')
@@ -61,6 +62,7 @@ socket.on('new user', users => {
 socket.on('new game', movie => {
     queue.classList.add('hidden')
 
+    timerCont.textContent = ''
     movieCont.innerHTML = ''
 
     const img = document.createElement('img')
@@ -69,9 +71,20 @@ socket.on('new game', movie => {
     img.alt = `poster of random movie`
 
     movieCont.appendChild(img)
+
+    let timeLeft = 30
+    let timer = setInterval(function() {
+        if(timeLeft < 1) {
+            clearInterval(timer)
+            socket.emit('new movie')
+        }
+        timerCont.textContent = timeLeft
+        timeLeft -= 1
+    }, 1000)
 })
 
 socket.on('random movie', movie => {
+    timerCont.textContent = ''
     movieCont.innerHTML = ''
 
     const img = document.createElement('img')
@@ -80,6 +93,16 @@ socket.on('random movie', movie => {
     img.alt = `poster of random movie`
 
     movieCont.appendChild(img)
+
+    let timeLeft = 30
+    let timer = setInterval(() => {
+        if(timeLeft < 1) {
+            clearInterval(timer)
+            socket.emit('new movie')
+        }
+        timerCont.textContent = timeLeft
+        timeLeft -= 1
+    }, 1000)
 })
 
 socket.on('message', data => {
@@ -112,7 +135,6 @@ socket.on('good guess', data => {
     img.src = `https://image.tmdb.org/t/p/w400${data.movie.backdrop_path}`
     img.alt = `poster of random movie`
 
-
     if (data.username === username) {
         mesEl.textContent = `You guessed the right movie!`
     } else {
@@ -125,6 +147,18 @@ socket.on('good guess', data => {
     chatBox.appendChild(mesEl)
 
     chatBox.scrollTop = chatBox.scrollHeight
+
+    clearInterval(timer)
+
+    let timeLeft = 30
+    let timer = setInterval(function() {
+        if(timeLeft < 1) {
+            clearInterval(timer)
+            socket.emit('new movie')
+        }
+        timerCont.textContent = timeLeft
+        timeLeft -= 1
+    }, 1000)
 })
 
 chatForm.addEventListener('submit', (e) => {
