@@ -40,7 +40,7 @@ socket.on('new user', users => {
         joinedUsers.appendChild(userItem)
     })
 
-    userNeed.textContent = `${usersNeeded} more users needed to start the game.`
+    userNeed.textContent = `${usersNeeded} more user(s) needed to start the game.`
 
     users.splice(3)
 
