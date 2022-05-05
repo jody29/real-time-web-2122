@@ -50,9 +50,9 @@ io.on('connection', (socket) => {
 
     socket.on('new movie', () => {
         randomSortedMovieData()
-        .then(async data => {
+        .then(data => {
             console.log(data)
-            movie = await data
+            movie = data
             io.emit('random movie', data)
         })
     })

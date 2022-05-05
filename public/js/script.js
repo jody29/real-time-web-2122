@@ -61,6 +61,7 @@ socket.on('new user', users => {
 
 socket.on('new game', movie => {
     queue.classList.add('hidden')
+    timerCont.classList.add('hidden')
 
     timerCont.textContent = ''
     movieCont.innerHTML = ''
@@ -78,6 +79,16 @@ socket.on('new game', movie => {
             clearInterval(timer)
             socket.emit('new movie')
         }
+
+        socket.on('good guess', data => {
+            clearInterval(timer)
+        })
+
+        socket.on('random movie', movie => {
+            clearInterval(timer)
+        })
+
+        timerCont.classList.remove('hidden')
         timerCont.textContent = timeLeft
         timeLeft -= 1
     }, 1000)
@@ -86,6 +97,7 @@ socket.on('new game', movie => {
 socket.on('random movie', movie => {
     timerCont.textContent = ''
     movieCont.innerHTML = ''
+    timerCont.classList.add('hidden')
 
     const img = document.createElement('img')
 
@@ -95,14 +107,28 @@ socket.on('random movie', movie => {
     movieCont.appendChild(img)
 
     let timeLeft = 30
-    let timer = setInterval(() => {
+    let timer = setInterval(function() {
         if(timeLeft < 1) {
             clearInterval(timer)
+        }
+
+        if(timeLeft == 0) {
             socket.emit('new movie')
         }
+
+        socket.on('good guess', data => {
+            clearInterval(timer)
+        })
+
+        socket.on('random movie', movie => {
+            clearInterval(timer)
+        })
+
+        timerCont.classList.remove('hidden')
         timerCont.textContent = timeLeft
         timeLeft -= 1
     }, 1000)
+
 })
 
 socket.on('message', data => {
@@ -127,6 +153,8 @@ socket.on('message', data => {
 })
 
 socket.on('good guess', data => {
+    timerCont.classList.add('hidden')
+    timerCont.textContent = ''
     movieCont.innerHTML = '' 
 
     const img = document.createElement('img')
@@ -148,14 +176,22 @@ socket.on('good guess', data => {
 
     chatBox.scrollTop = chatBox.scrollHeight
 
-    clearInterval(timer)
-
     let timeLeft = 30
     let timer = setInterval(function() {
         if(timeLeft < 1) {
             clearInterval(timer)
             socket.emit('new movie')
         }
+
+        socket.on('good guess', data => {
+            clearInterval(timer)
+        })
+
+        socket.on('random movie', movie => {
+            clearInterval(timer)
+        })
+
+        timerCont.classList.remove('hidden')
         timerCont.textContent = timeLeft
         timeLeft -= 1
     }, 1000)
