@@ -35,20 +35,27 @@ io.on('connection', (socket) => {
             id: socket.id
         })
 
-        io.emit('new user', (users))
+        if (users.length >= 2) {
+            randomSortedMovieData()
+            .then(async data => {
+                console.log(data)
+                movie = await data
+                io.emit('new game', data)
+                io.emit('new user', (users))
+            })
+        } else {
+            io.emit('new user', (users))
+        }
     })
 
     socket.on('new message', data => {
-
-        console.log(data.message)
         if (movie) {
             if (data.message === movie.title.toLowerCase()) {
-                console.log('good answer')
                 let rightUser = users.find(object => object.username === data.username)
 
                 rightUser.score = rightUser.score + 10
 
-                console.log(rightUser)
+                users.sort((a, b) => b.score - a.score)
 
                 io.emit('new user', (users))
 
@@ -68,17 +75,7 @@ io.on('connection', (socket) => {
                 })
             }
         }
-    })
-
-    socket.on('new movie', () => {
-        randomSortedMovieData()
-        .then(async data =>  {
-            movie = await data
-            console.log(data)
-            io.emit('random movie', data)
-        })
-        .catch(err => err)
-    })   
+    }) 
 
     socket.on('disconnect', username => {
         let name = ''

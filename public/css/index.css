@@ -251,8 +251,8 @@ img {
 
 #queue section ul {
     width: 50%;
-    height: 50%;
     margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 #queue section ul li {
@@ -264,4 +264,17 @@ img {
     padding: 1em;
     border-radius: .5em;
     font-weight: bold;
+}
+
+#userNeed {
+    color: white;
+}
+
+.joinedUser {
+    background-color: #9f0000!important;
+    color: white!important;
+}
+
+.hidden {
+    display: none;
 }

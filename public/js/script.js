@@ -7,6 +7,8 @@ const chatForm = document.querySelector('#chatForm')
 const message = document.querySelector('#message')
 const chatBox = document.querySelector('#chatBox')
 const joinedUsers = document.querySelector('#joined')
+const userNeed = document.querySelector('#userNeed')
+const queue = document.querySelector('#queue')
 
 const urlParams = new URLSearchParams(window.location.search)
 const username = urlParams.get('username')
@@ -22,6 +24,9 @@ socket.emit('user connected', username)
 
 socket.on('new user', users => {
     userList.innerHTML = ''
+    joinedUsers.innerHTML = ''
+
+    let usersNeeded = 2 - users.length
 
     users.forEach(user => {
         let userItem = document.createElement('li')
@@ -34,6 +39,8 @@ socket.on('new user', users => {
 
         joinedUsers.appendChild(userItem)
     })
+
+    userNeed.textContent = `${usersNeeded} more users needed to start the game.`
 
     users.splice(3)
 
@@ -51,14 +58,25 @@ socket.on('new user', users => {
     })
 })
 
-socket.on('random movie', movie => {
-    movieCont.innerHTML = ''
+socket.on('new game', movie => {
+    queue.classList.add('hidden')
 
-    currentMovie = movie.title.toLowerCase()
+    movieCont.innerHTML = ''
 
     const img = document.createElement('img')
 
-    img.src = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
+    img.src = `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`
+    img.alt = `poster of random movie`
+
+    movieCont.appendChild(img)
+})
+
+socket.on('random movie', movie => {
+    movieCont.innerHTML = ''
+
+    const img = document.createElement('img')
+
+    img.src = `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`
     img.alt = `poster of random movie`
 
     movieCont.appendChild(img)
@@ -91,7 +109,7 @@ socket.on('good guess', data => {
     const img = document.createElement('img')
     const mesEl = document.createElement('li')
 
-    img.src = `https://image.tmdb.org/t/p/w500/${data.movie.backdrop_path}`
+    img.src = `https://image.tmdb.org/t/p/w400${data.movie.backdrop_path}`
     img.alt = `poster of random movie`
 
 
@@ -119,10 +137,6 @@ chatForm.addEventListener('submit', (e) => {
         })
     }
     message.value = ''
-})
-
-newMovie.addEventListener('click', () => {
-    socket.emit('new movie')
 })
 
 leaveRoom.addEventListener('click', () => {
