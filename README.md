@@ -53,7 +53,7 @@ All the users get to see the movie poster and name. The user who guesses the rel
 ![releaseguesser](https://user-images.githubusercontent.com/66092262/165304968-737c12d7-d6ad-4a9f-b656-1e8a267e3a36.png)
 
 ## 📊 Data model
-For this project I used [themoviedb]() API.
+For this project I used [themoviedb](https://developers.themoviedb.org/3/getting-started/introduction) API.
 ![data model](https://user-images.githubusercontent.com/66092262/167179895-8823d57a-83d5-4eda-9416-9c2a97772560.png)
 
 ### get response example
