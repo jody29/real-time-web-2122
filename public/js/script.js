@@ -10,6 +10,7 @@ const joinedUsers = document.querySelector('#joined')
 const userNeed = document.querySelector('#userNeed')
 const queue = document.querySelector('#queue')
 const timerCont = document.querySelector('#timer')
+const gameCont = document.querySelector('#room')
 
 const urlParams = new URLSearchParams(window.location.search)
 const username = urlParams.get('username')
@@ -24,10 +25,11 @@ chatForm.appendChild(hiddenName)
 socket.emit('user connected', username)
 
 socket.on('new user', users => {
+    timerCont.textContent = ''
     userList.innerHTML = ''
     joinedUsers.innerHTML = ''
 
-    let usersNeeded = 2 - users.length
+    let usersNeeded = 4 - users.length
 
     users.forEach(user => {
         let userItem = document.createElement('li')
@@ -57,6 +59,80 @@ socket.on('new user', users => {
 
         userList.appendChild(userItem)
     })
+
+    let timeLeft = 30
+    let timer = setInterval(function() {
+        if(timeLeft < 1) {
+            clearInterval(timer)
+            socket.emit('new movie')
+        }
+
+        socket.on('new user', users => {
+            clearInterval(timer)
+        })
+
+        socket.on('good guess', data => {
+            clearInterval(timer)
+        })
+
+        socket.on('random movie', movie => {
+            clearInterval(timer)
+        })
+
+        timerCont.classList.remove('hidden')
+        timerCont.textContent = timeLeft
+        timeLeft -= 1
+    }, 1000)
+})
+
+socket.on('end game', (users) => {
+    gameCont.innerHTML = ''
+
+    const rankingCont = document.createElement('article')
+    rankingCont.id = 'rankingCont'
+
+    gameCont.appendChild(rankingCont)
+
+    const rankingSect = document.createElement('section')
+    rankingSect.id = 'rankingSect'
+
+    rankingCont.appendChild(rankingSect)
+
+    const winner = document.createElement('h2')
+    winner.textContent = `${users[0].username} is the winner!`
+    rankingSect.appendChild(winner)
+
+    const finalRanking = document.createElement('ul')
+    finalRanking.classList.add('finalRanking')
+
+    users.forEach(user => {
+        const rankItem = document.createElement('li')
+
+        if (user.username === username) {
+            rankItem.classList.add('currentUser')
+        }
+
+        rankItem.textContent = `${user.username}: ${user.score}`
+
+        finalRanking.appendChild(rankItem)
+    })
+
+    rankingSect.appendChild(finalRanking)
+
+    const leave = document.createElement('a')
+    leave.href = '/'
+    leave.id = 'leave'
+
+    const leaveImg = document.createElement('img')
+    leaveImg.src = '/assets/exit.svg'
+
+    leave.appendChild(leaveImg)
+
+    rankingSect.appendChild(leave)
+
+    leave.addEventListener('click', () => {
+        socket.emit('disconnect', username)
+    })
 })
 
 socket.on('new game', movie => {
@@ -79,6 +155,10 @@ socket.on('new game', movie => {
             clearInterval(timer)
             socket.emit('new movie')
         }
+
+        socket.on('new user', users => {
+            clearInterval(timer)
+        })
 
         socket.on('good guess', data => {
             clearInterval(timer)
@@ -115,6 +195,10 @@ socket.on('random movie', movie => {
         if(timeLeft == 0) {
             socket.emit('new movie')
         }
+
+        socket.on('new user', users => {
+            clearInterval(timer)
+        })
 
         socket.on('good guess', data => {
             clearInterval(timer)
@@ -182,6 +266,10 @@ socket.on('good guess', data => {
             clearInterval(timer)
             socket.emit('new movie')
         }
+
+        socket.on('new user', users => {
+            clearInterval(timer)
+        })
 
         socket.on('good guess', data => {
             clearInterval(timer)

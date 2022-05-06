@@ -185,9 +185,23 @@ img {
 
 #leave {
     position: absolute;
-    left: 1em;
-    top: 1em;
+    left: 1.5em;
+    top: 1.5em;
     z-index: 20;
+    padding: 1.5em;
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(105, 20, 20);
+}
+
+#leave img {
+    border: 0;
+    width: 2em;
+    border-radius: 0;
 }
 
 .currentUser {
@@ -284,10 +298,55 @@ img {
     position: absolute;
     right: 1em;
     top: 1em;
-    background-color: rgb(105, 20, 20);
+    background-color: white;
     padding: .5em;
     border-radius: 50%;
     font-size: 2em;
     font-weight: bold;
+    color: black;
+}
+
+#rankingCont {
+    width: 100%;
+    height: 100%;
+}
+
+#rankingSect {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(31, 31, 31);
+    margin: 1em 0;
+    border-radius: .5em;
+    box-shadow: 0px 0px 5px black;
+}
+
+#rankingSect ul {
+    width: 50%;
+}
+
+#rankingSect ul li {
+    background-color: white;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: .5em;
+}
+
+#rankingSect ul li:first-of-type {
+    background-color: rgba(255, 215, 0, .5);
     color: white;
 }
+
+#rankingSect ul li:nth-of-type(2) {
+    background-color: rgba(192, 192, 192, .5);
+    color: white;
+}
+
+#rankingSect ul li:nth-of-type(3) {
+    background-color: rgba(222, 184, 135, .5);
+    color: white;
+}
+
+.finalRanking {
+    margin-top: 1em;
+}
+

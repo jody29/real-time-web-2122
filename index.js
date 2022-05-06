@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
             id: socket.id
         })
 
-        if (users.length >= 2) {
+        if (users.length >= 4) {
             randomSortedMovieData()
             .then(async data => {
                 console.log(data)
@@ -68,8 +68,11 @@ io.on('connection', (socket) => {
 
                 io.emit('new user', (users))
 
-                randomSortedMovieData()
-                .then(async res => {
+                if (users[0].score == 100) {
+                    io.emit('end game', (users))
+                } else {
+                    randomSortedMovieData()
+                    .then(async res => {
                     console.log(res)
                     movie = await res
                     io.emit('good guess', {
@@ -77,6 +80,8 @@ io.on('connection', (socket) => {
                         username: data.username
                     })
                 })
+
+                }
             } else {
                 io.emit('message', {
                     username: data.username,
