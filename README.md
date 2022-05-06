@@ -57,23 +57,22 @@ All the users get to see the movie poster and name. The user who guesses the rel
 
 ## ✅ MoSCoW todo
 ### Must have:
-- [ ] get random movie from API
-- [ ] videochat with webRTC
-- [ ] chatting with displayname
-- [ ] implement turns for the users
-- [ ] validation for user guesses
+- [x] get random movie from API
+- [x] chatting with displayname
+- [x] validation for user guesses
 
 ### Should have:
-- [ ] create rooms
-- [ ] have a live leaderboard
+- [x] authentication
+- [x] have a live leaderboard
 - [ ] UI-Stack
 
 ### Could have:
 - [ ] chat timestamp
 - [ ] detailed stats
+- [ ] create rooms
 
 ### Would have:
-- [ ] profile authentication
+- [ ] videochat with webRTC
 
 
 ## 📦 NPM packages
@@ -81,6 +80,9 @@ All the users get to see the movie poster and name. The user who guesses the rel
 * dotenv
 * date-format
 * socket.io
+* body-parser
+* ejs
+* node-fetch
 
 ## ℹ️ Recourses
 
