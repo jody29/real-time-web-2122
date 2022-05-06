@@ -53,6 +53,7 @@ All the users get to see the movie poster and name. The user who guesses the rel
 ![releaseguesser](https://user-images.githubusercontent.com/66092262/165304968-737c12d7-d6ad-4a9f-b656-1e8a267e3a36.png)
 
 ## 📊 Data model
+For this project I used [themoviedb]() API.
 ![data model](https://user-images.githubusercontent.com/66092262/167179895-8823d57a-83d5-4eda-9416-9c2a97772560.png)
 
 ### get response example
@@ -486,6 +487,9 @@ All the users get to see the movie poster and name. The user who guesses the rel
 ### Should have:
 - [x] authentication
 - [x] have a live leaderboard
+- [x] give users 30 seconds to guess
+- [x] end game when user gets 100 points 
+- [x] game starts when 4 users have joined
 - [ ] UI-Stack
 
 ### Could have:
