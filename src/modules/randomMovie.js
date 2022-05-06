@@ -16,13 +16,13 @@ const randomSortedMovieData = async () => {
 
     const url = `https://api.themoviedb.org/3/movie/${randomCat}?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US&page=${randomPage}&year=${randomYear}`
 
-    const movieData = await fetchData(url)
+    const movieData = await fetchData(url) // await the fetchData function
 
-    const randomNumb = Math.floor(Math.random() * movieData.results.length)
+    const randomNumb = Math.floor(Math.random() * movieData.results.length) // create random index for the movieData array
 
-    randomMovie = movieData.results[randomNumb]
+    randomMovie = movieData.results[randomNumb] // get a random movie from the movieData array
 
-    return randomMovie
+    return randomMovie // return the random movie
 }
 
 module.exports = randomSortedMovieData

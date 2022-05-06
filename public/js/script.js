@@ -228,7 +228,7 @@ socket.on('message', data => {
     chatBox.scrollTop = chatBox.scrollHeight
 })
 
-socket.on('good guess', data => {
+socket.on('good guess', data => { // when the server sockets says that someone guessed the movie right then...
     timerCont.classList.add('hidden') // timer should not be visible
     timerCont.textContent = '' // timer should be empty
     movieCont.innerHTML = '' // movie poster container needs to be empty
