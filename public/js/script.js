@@ -17,7 +17,7 @@ const username = urlParams.get('username') // get the username parameter
 socket.emit('user connected', username) // send the server socket the username of the client that has joined
 
 socket.on('new user', users => { // when server sockets sends a new user
-    timerCont.textContent = ''
+    timerCont.textContent = '' // container for the timer
     userList.innerHTML = ''
     joinedUsers.innerHTML = ''
 
