@@ -1,7 +1,7 @@
 # Movie Guesser
 
 ![interface van de app](https://user-images.githubusercontent.com/66092262/167162281-c84710a0-4490-4fa8-9707-a8bdc0a00040.png)
-[🌐 Live link]()
+[🌐 Live link](https://movieguesser.herokuapp.com/)
 
 ## Table of contents
 * [Description]()
@@ -29,8 +29,12 @@ $ cd real-time-web-2122
 ```bash
 $ npm install
 ```
-### Check .env.example file for environment variables
-```bash
+### Generate API token
+* Create an account on [themoviedb](https://www.themoviedb.org/)
+* Get your API key [here](https://www.themoviedb.org/settings/api)
+### Create .env file with your API key
+```
+MOVIEDB_TOKEN='<YOUR_API_KEY>'
 ```
 ### Start application
 ```bash
