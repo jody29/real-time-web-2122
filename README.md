@@ -495,7 +495,7 @@ For this project I used [themoviedb](https://developers.themoviedb.org/3/getting
 this will be emited to all clients after a new client has connected.
 #### new game
 if there are 4 users in the user array, then this emit will be send to all clients.
-### random movie 
+#### random movie 
 after the client sended the new movie emit, a random movie will be requested from the api and this will be send to all clients.
 #### good guess
 after message validation, if the message matches the random movie then send this emit to all clients.
