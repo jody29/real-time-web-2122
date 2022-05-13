@@ -9,6 +9,7 @@
 * [Concept]()
 * [Data model]()
 * [Data life cycle]()
+* [Socket events]()
 * [MoSCoW todo]()
 * [Resources]()
 * [License]()
@@ -45,7 +46,7 @@ $ npm start
 I decided to create a concept around the MovieDatabase API and combine this with a realtime implication. I created 3 concepts and created 1 concepts out of these 3 concepts.
 
 ### Movie guesser by poster
-All the user get to see a random movie poster. The users have to guess which movie it is. The first user to guess it right wins and get a point. If none of the users manage to guess it right within 20 seconds, no one will get any points.
+All the user get to see a random movie poster. The users have to guess which movie it is. The first user to guess it right wins and get a point. If none of the users manage to guess it right within 30 seconds, no one will get any points.
 ![movieguesser](https://user-images.githubusercontent.com/66092262/165304327-a0efa1e9-28b8-420e-86ac-29517ad67d9f.png)
 
 ### Videochat hints
@@ -55,6 +56,9 @@ One user gets to see one movie and this user has to visualize the movie through 
 ### Guess release year
 All the users get to see the movie poster and name. The user who guesses the release year of the movie as first, gets the points. If no one guesses the year in 20 seconds, no one will get any points.
 ![releaseguesser](https://user-images.githubusercontent.com/66092262/165304968-737c12d7-d6ad-4a9f-b656-1e8a267e3a36.png)
+
+### Final concept
+After the feedback of other students I decided to go for the movie guesser by poster. The one with the videochat was the most interesting, but the technique behind this concept is too complex for the amount of time. That is why I decided to go for the movie guesser by poster. This was still a challenge for me and it was doable in the given amount of time. It's also an interesting concept with many possibilities for improvement.
 
 ## 📊 Data model
 For this project I used [themoviedb](https://developers.themoviedb.org/3/getting-started/introduction) API.
@@ -483,6 +487,31 @@ For this project I used [themoviedb](https://developers.themoviedb.org/3/getting
 
 ## Life cycle diagram
 ![LifeCycleDiagram](https://user-images.githubusercontent.com/66092262/168274261-f62ff50e-0cbf-47f1-b443-288151009dac.png)
+
+## Server emits
+### Server emits
+#### new user
+this will be emited to all clients after a new client has connected.
+#### new game
+if there are 4 users in the user array, then this emit will be send to all clients.
+### random movie 
+after the client sended the new movie emit, a random movie will be requested from the api and this will be send to all clients.
+#### good guess
+after message validation, if the message matches the random movie then send this emit to all clients.
+#### message 
+if the message that is send from the client does not match the random movie, then send the message to all clients.
+### end game
+if a user has 100 points, then send this to all the clients. This will then end the game.
+
+### Client emits
+#### user connected
+after a new user loads the page, this will be send to the server
+#### new movie
+this will be send to the server after 30 seconds, if no one guesses the movie title.
+#### new message
+this will be send to the server if the input field has a value and the user has clicked to send the message.
+#### disconnect
+this will be send to the server when someone clicks the button to leave the game.
 
 ## ✅ MoSCoW todo
 ### Must have:
