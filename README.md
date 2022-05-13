@@ -4,15 +4,16 @@
 [🌐 Live link](https://movieguesser.herokuapp.com/)
 
 ## Table of contents
-* [Description]()
-* [Installation]()
-* [Concept]()
-* [Data model]()
-* [Data life cycle]()
-* [Socket events]()
-* [MoSCoW todo]()
-* [Resources]()
-* [License]()
+* [Description](https://github.com/jody29/real-time-web-2122#-description)
+* [Installation](https://github.com/jody29/real-time-web-2122#%EF%B8%8F-installation)
+* [Concept](https://github.com/jody29/real-time-web-2122#-concept)
+* [Data model](https://github.com/jody29/real-time-web-2122#-data-model)
+* [Data life cycle](https://github.com/jody29/real-time-web-2122#life-cycle-diagram)
+* [Socket events](https://github.com/jody29/real-time-web-2122#socket-events)
+* [MoSCoW todo](https://github.com/jody29/real-time-web-2122#-moscow-todo)
+* [NPM packages](https://github.com/jody29/real-time-web-2122#-npm-packages)
+* [Resources](https://github.com/jody29/real-time-web-2122#%E2%84%B9%EF%B8%8F-recourses)
+* [License](https://github.com/jody29/real-time-web-2122#%EF%B8%8F-license)
 
 ## 📋 Description
 This project is a movie guesser game that I created for the course real-time-web-2122.
@@ -488,7 +489,7 @@ For this project I used [themoviedb](https://developers.themoviedb.org/3/getting
 ## Life cycle diagram
 ![LifeCycleDiagram](https://user-images.githubusercontent.com/66092262/168274261-f62ff50e-0cbf-47f1-b443-288151009dac.png)
 
-## Server emits
+## Socket events
 ### Server emits
 #### new user
 this will be emited to all clients after a new client has connected.
@@ -546,36 +547,8 @@ this will be send to the server when someone clicks the button to leave the game
 * node-fetch
 
 ## ℹ️ Recourses
-
+* Teachers at the minor
+* Other students who helped me and gave feedback
 
 ## ©️ License
 MIT
-
-
-<!-- Here are some hints for your project! -->
-
-<!-- Start out with a title and a description -->
-
-<!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
-
-<!-- Add a link to your live demo in Github Pages 🌐-->
-
-<!-- replace the code in the /docs folder with your own, so you can showcase your work with GitHub Pages 🌍 -->
-
-<!-- Maybe a table of contents here? 📚 -->
-
-<!-- ☝️ replace this description with a description of your own work -->
-
-<!-- How about a section that describes how to install this project? 🤓 -->
-
-<!-- ...but how does one use this project? What are its features 🤔 -->
-
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
-
-<!-- This would be a good place for your data life cycle ♻️-->
-
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
-
-<!-- We all stand on the shoulders of giants, please link all the sources you used in to create this project. -->
-
-<!-- How about a license here? When in doubt use GNU GPL v3. 📜  -->
