@@ -481,6 +481,8 @@ For this project I used [themoviedb](https://developers.themoviedb.org/3/getting
 ```
 </details>
 
+## Life cycle diagram
+![LifeCycleDiagram](https://user-images.githubusercontent.com/66092262/168274261-f62ff50e-0cbf-47f1-b443-288151009dac.png)
 
 ## ✅ MoSCoW todo
 ### Must have:
@@ -494,12 +496,12 @@ For this project I used [themoviedb](https://developers.themoviedb.org/3/getting
 - [x] give users 30 seconds to guess
 - [x] end game when user gets 100 points 
 - [x] game starts when 4 users have joined
-- [ ] UI-Stack
 
 ### Could have:
 - [ ] chat timestamp
 - [ ] detailed stats
 - [ ] create rooms
+- [ ] UI-Stack
 
 ### Would have:
 - [ ] videochat with webRTC
